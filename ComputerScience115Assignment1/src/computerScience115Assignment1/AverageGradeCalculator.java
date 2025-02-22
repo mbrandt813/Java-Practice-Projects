@@ -60,6 +60,14 @@ public class AverageGradeCalculator {
 	System.out.println(gradeList.size());
 	}
 
+	/*The fourth step in the assignment is to print all grade that were entered.*/
+	for (int i = 0; i < gradeList.size(); i++) {
+		/*I want to display the number of the quiz in the print out but still use
+		the correct index number so I will create an instance to hold the quiz number*/
+		int quizNum = i + 1;
+		System.out.println("Quiz " + quizNum + " Grade: " + gradeList.get(i)); 
+		System.out.println(i);
+	}
 	}
 	
 }
