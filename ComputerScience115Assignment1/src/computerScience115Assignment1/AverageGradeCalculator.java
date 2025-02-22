@@ -87,10 +87,25 @@ public class AverageGradeCalculator {
 	/*Now to find the average I will divide the sum of all grades by the number of
 	 *grades entered. I will use a double data type so I can round it appropriately*/
 	double averageOfGrades = sumOfGrades / gradeList.size();
-	double roundedAverageOfGrades = Math.round(averageOfGrades);
+	int roundedAverageOfGrades = (int)Math.round(averageOfGrades);
 	//Display the average grade to the user.
 	System.out.println("The average of your quiz grades is: " + roundedAverageOfGrades);
 	
+    /*The sixth step in the assignment is to display the letter grade associated with
+     * the total average grade. To do that I will use a if statement and compare
+     * the average quiz grades against the number ranges, the correct letter grade 
+     * will print.*/
+	if (roundedAverageOfGrades >= 90) {
+		System.out.println("Your average quiz grade was an A.");
+	} else if (roundedAverageOfGrades >= 80 && roundedAverageOfGrades <= 89) { 
+		System.out.println("Your average quiz grade was a B.");
+	} else if (roundedAverageOfGrades >= 70 && roundedAverageOfGrades <= 79) {
+		System.out.println("Your average quiz grade was a C.");
+	} else if (roundedAverageOfGrades >= 60 && roundedAverageOfGrades <= 69) {
+		System.out.println("Your average quiz grade was a D.");
+	} else if (roundedAverageOfGrades >= 0 && roundedAverageOfGrades <= 59) {
+		System.out.println("Your average quiz grade was an F.");
 	}
-	
+	//This completes the program.
+	}
 }
