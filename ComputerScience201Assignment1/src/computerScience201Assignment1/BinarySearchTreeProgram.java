@@ -25,6 +25,26 @@ public class BinarySearchTreeProgram {
     	public BTree() {
     		root = null;
     	}
+    	
+    /*Correction: Here I will make a method to create a balanced binary tree when the numbers are
+     * inserted, regardless of what order they are inserted. */
+    public void balancedBTree(int[] numbers) {
+    	//Clear out the tree if it was previously filled in.
+    	root = null;
+    	root = makeBalancedBTree(numbers, 0, numbers.length -1);
+    }
+    //Determine where to place node in tree.
+    public Node makeBalancedBTree(int[] numbers, int begin, int end) {
+    	if (begin > end) {
+    		return null;
+    	}
+        int middle = (begin + end) / 2;
+        
+        Node newNode = new Node(numbers[middle]);
+        newNode.leftCNode = makeBalancedBTree(numbers, begin, middle - 1);
+        newNode.rightCNode = makeBalancedBTree(numbers, middle + 1, end);
+        return newNode;
+    }
     /*Options one and two in the menu require the user to be able to add values into
      * the tree. To be able to add values into the tree I will make an inserter. This
      * won't do anything yet because I need to make the insertNode method next to do 
@@ -183,10 +203,9 @@ public class BinarySearchTreeProgram {
     		/*If they pick one, I will create the binary search tree with the numbers 
     		provided in the assignment.*/
     		case 1:
-    			int[] treeNumbers = {4, 2, 6, 1, 3, 5, 7};
-    			for (int num : treeNumbers) {
-    				newTree.insert(num);
-    			}
+    			int[] treeNumbers = {1,2,3,4,5,6,7};
+    			newTree.balancedBTree(treeNumbers);
+    			
     			System.out.println("New binary search tree created!");
     			break;
     			
@@ -238,8 +257,5 @@ public class BinarySearchTreeProgram {
     		}
     	}
     	
-    }
-    
-	
-	
+    }	
 }
