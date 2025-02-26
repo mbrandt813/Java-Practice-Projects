@@ -102,6 +102,51 @@ public class BinarySearchTreeProgram {
     		return cNode;
     	}
     	
+    	/*Options four five and six on the menu should allow the user to print out
+    	 * the nodes in certain orders - InOrder, PreOrder, and PostOder. To do that
+    	 * I need to make some methods to print them each way.*/
+    	//First I'll do in order, printing from the left to the right of the tree.
+        public void pInOrder() {
+        	inOrder(root);
+        	System.out.println();
+        }
+        public void inOrder(Node cNode) {
+        	if (cNode == null) {
+        		return;
+        	}
+        	inOrder(cNode.leftCNode);
+        	System.out.print(cNode.data + " ");
+        	inOrder(cNode.rightCNode);
+        }
+        
+        /*Next I will do preorder, which will start at the root and go down through the
+        children, starting on the left.*/
+        public void pPreOrder() {
+        	preOrder(root);
+        	System.out.println();
+        }
+        public void preOrder(Node cNode) {
+        	if (cNode ==null) {
+        		return;
+        	}
+        	System.out.print(cNode.data + " ");
+        	preOrder(cNode.leftCNode);
+        	preOrder(cNode.rightCNode);
+        }
+        /*Last I will do the post order. This will start from the left-most child node
+         * and will end with the root.*/
+       public void pPostOrder() {
+    	   postOrder(root);
+    	   System.out.println();
+       }
+       public void postOrder(Node cNode) {
+    	   if (cNode == null) {
+    		   return;
+    	   }
+    	   postOrder(cNode.leftCNode);
+    	   postOrder(cNode.rightCNode);
+    	   System.out.print(cNode.data + " ");
+       }
     }
     
 	
