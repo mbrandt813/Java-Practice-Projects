@@ -40,7 +40,7 @@ public class BinarySearchTreeProgram {
     		}
     		/*If the number is less than the node we are looking at i will add it 
     		 * to the left. This part here is recursive and will start the method over.*/
-    		if (number > cNode.data) {
+    		if (number < cNode.data) {
     			cNode.leftCNode = insertNode(cNode.leftCNode, number);
     		}
     		/*If the number is greater then the node we are looking at I will add it
@@ -102,7 +102,7 @@ public class BinarySearchTreeProgram {
     		return cNode;
     	}
     	
-    	/*Options four five and six on the menu should allow the user to print out
+    	/*Options four, five, and six on the menu should allow the user to print out
     	 * the nodes in certain orders - InOrder, PreOrder, and PostOder. To do that
     	 * I need to make some methods to print them each way.*/
     	//First I'll do in order, printing from the left to the right of the tree.
@@ -117,16 +117,17 @@ public class BinarySearchTreeProgram {
         	inOrder(cNode.leftCNode);
         	System.out.print(cNode.data + " ");
         	inOrder(cNode.rightCNode);
+        	
         }
         
-        /*Next I will do preorder, which will start at the root and go down through the
+        /*Next I will do pre order, which will start at the root and go down through the
         children, starting on the left.*/
         public void pPreOrder() {
         	preOrder(root);
         	System.out.println();
         }
         public void preOrder(Node cNode) {
-        	if (cNode ==null) {
+        	if (cNode == null) {
         		return;
         	}
         	System.out.print(cNode.data + " ");
@@ -147,6 +148,96 @@ public class BinarySearchTreeProgram {
     	   postOrder(cNode.rightCNode);
     	   System.out.print(cNode.data + " ");
        }
+    }
+    
+    //Now I will create my main method that will hold the menu.
+    public static void main(String[] args) {
+    	//Make a scanner instance to get response from user.
+    	Scanner scanner = new Scanner(System.in);
+    	//Make an empty tree for the numbers to be add into.
+    	BTree newTree = new BTree();
+    	
+    	//I don't want the user to get stuck in the menu so I will make an exit.
+    	boolean exitProgramStatus = false;
+    	
+    	/*Now I will make a while look that will allow the user to pick options 
+    	 * from the list until they decide to exit the program.*/
+    	while(!exitProgramStatus) {
+    		System.out.println("Welcome to the Tree Builder!");
+    		System.out.println("Select an option from the menu below.");
+    		System.out.println("1. Create a binary search tree.");
+    		System.out.println("2. Add a node.");
+    		System.out.println("3. Delete a node.");
+    		System.out.println("4. Print nodes by InOrder .");
+    		System.out.println("5. Print nodes by PreOrder.");
+    		System.out.println("6. Print nodes by PostOrder.");
+    		System.out.println("7. Exit program.");
+    		System.out.println("Selection: ");
+    		
+    		//Collect the answer from the user.
+    		int choice = scanner.nextInt();
+    		
+    		/*I will use a switch statement to use the correct methods based on the 
+    		 * users response.*/
+    		switch (choice) {
+    		/*If they pick one, I will create the binary search tree with the numbers 
+    		provided in the assignment.*/
+    		case 1:
+    			int[] treeNumbers = {4, 2, 6, 1, 3, 5, 7};
+    			for (int num : treeNumbers) {
+    				newTree.insert(num);
+    			}
+    			System.out.println("New binary search tree created!");
+    			break;
+    			
+    		case 2: 
+    			/*If they pick two, I will ask them what number they want to add to the tree
+    			and add it as a new node.*/
+    			System.out.println("Enter a number to add to the tree: ");
+    			int newNumber = scanner.nextInt();
+    			newTree.insert(newNumber);
+    			System.out.println("A new node " + newNumber + " was added to the tree!");
+    			break;
+    			
+    		case 3:
+    			/*If they pick three, I will ask them what number they want to delete from the tree
+    			and use the delete method to remove it.*/
+    			System.out.println("Enter a number to delete from the tree: ");
+    			int deleteNumber = scanner.nextInt();
+    			newTree.delete(deleteNumber);
+    			System.out.println("A node " + deleteNumber + " was deleted from the tree!");
+    			break;
+    			
+    		case 4:
+    			//If they pick four, I will use the pInOrder method to display the tree by InOrder.
+    			System.out.print("The tree in InOrder: ");
+    			newTree.pInOrder();
+    			break;
+    			
+    		case 5:
+    			//If they pick five, I will use the pPreOrder method to display the tree by PreOrder.
+    			System.out.print("The tree in PreOrder: ");
+    			newTree.pPreOrder();
+    			break;
+    			
+    		case 6:
+    			//If they pick five, I will use the pPostOrder method to display the tree by PostOrder.
+    			System.out.print("The tree in PostOrder: ");
+    			newTree.pPostOrder();
+    			break;
+    			
+    		case 7:
+    			//If they pick five, I will use the pPostOrder method to display the tree by PostOrder.
+    			exitProgramStatus = true;
+    			System.out.print("Thank you for making a tree!");
+    			break;
+    			
+    		default:
+    			System.out.print("That is not a valid option, try again: ");
+    			break;
+    		}
+    	}
+    	
     }
     
 	
